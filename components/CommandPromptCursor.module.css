@@ -1,0 +1,17 @@
+/* components/CommandPromptCursor.module.css */
+.cursor {
+  display: inline-block;
+  width: 10px; /* Width of the blinking box */
+  height: 1em; /* Height of the blinking box */
+  background-color: white; /* Color of the box */
+  animation: blink 2s infinite; /* Blinking animation */
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1; /* Visible */
+  }
+  51%, 100% {
+    opacity: 0; /* Invisible */
+  }
+}
