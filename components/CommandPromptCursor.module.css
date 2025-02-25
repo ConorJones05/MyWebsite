@@ -1,13 +1,12 @@
-/* components/CommandPromptCursor.module.css */
 .cursor {
   display: inline-block;
-  width: 10px; /* Width of the blinking box */
-  height: 1em; /* Height of the blinking box */
-  background-color: white; /* Color of the box */
-  animation: blink 2s infinite; /* Blinking animation */
+  width: 10px; 
+  height: 1em; 
+  background-color: #00FF00; 
+  animation: blink 2s infinite; 
 }
 
-@keyframes blink {
+@keyframes blink { /* Flikering 100-0 percent */
   0%, 50% {
     opacity: 1; /* Visible */
   }

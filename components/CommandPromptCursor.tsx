@@ -1,4 +1,3 @@
-// components/CommandPromptCursor.tsx
 "use client";
 
 import styles from './CommandPromptCursor.module.css';

@@ -1,0 +1,82 @@
+[
+    {
+        "question": "What are Conor's technical skills?",
+        "answer": "Conor is proficient in Python, SQL, PostgreSQL, PyTorch, and Scikit-learn. He has experience with AWS, Flask, TensorFlow, web scraping, and data visualization tools like Matplotlib and Seaborn."
+    },
+    {
+        "question": "What is Conor's educational background?",
+        "answer": "Conor is a sophomore at UNC Chapel Hill, studying Statistics and Computer Science with an emphasis on Data Science."
+    },
+    {
+        "question": "Can you describe the VertuVisor project?",
+        "answer": "VertuVisor is a web application designed to streamline academic planning using AI. Conor developed the machine learning models, handled AWS deployment, and implemented the backend. The app provides personalized recommendations for students based on their transcript data."
+    },
+    {
+        "question": "What is Conor's involvement in datathons?",
+        "answer": "Conor participated in the Carolina Data Challenge 2024, where he built a neural network using 36 features and achieved an R² score of 0.975. He also created a cheat sheet to assist with clustering models, univariate linear regression, model evaluation metrics, and other machine learning techniques."
+    },
+    {
+        "question": "What machine learning frameworks does Conor know?",
+        "answer": "Conor is experienced with PyTorch, TensorFlow, and Scikit-learn. He uses these frameworks for tasks like regression models, classification, and academic planning algorithms."
+    },
+    {
+        "question": "What programming languages does Conor know?",
+        "answer": "Conor is proficient in Python, SQL, and has experience with web development using Flask."
+    },
+    {
+        "question": "What is UNC_Eats_AI?",
+        "answer": "UNC_Eats_AI is a project that involves web scraping to provide dining insights. Conor worked on the scraping and data analysis aspects of the project."
+    },
+    {
+        "question": "What does Conor want to pursue in the future?",
+        "answer": "Conor is interested in pursuing a PhD in Statistics, with a focus on Data Science and machine learning research."
+    },
+    {
+        "question": "What courses has Conor taken?",
+        "answer": "Conor has taken courses like STOR 320 (Introduction to Data Science), Calculus II, Discrete Math, and COMP 210. He is also studying advanced topics like exploratory data analysis and neural network implementation."
+    },
+    {
+        "question": "What is Conor's GitHub profile?",
+        "answer": "Conor's GitHub profile is https://github.com/ConorJones05, where you can explore his projects and contributions."
+    },
+    {
+        "question": "What is Conor's LinkedIn profile?",
+        "answer": "Conor's LinkedIn profile is https://www.linkedin.com/in/conor-jones05, showcasing his professional achievements and experience."
+    },
+    {
+        "question": "What is Conor's personal website?",
+        "answer": "Conor's personal website is https://conorjones05.github.io/, which provides an overview of his projects, skills, and academic journey."
+    },
+    {
+        "question": "What is the Carolina Data Challenge cheat sheet?",
+        "answer": "The Carolina Data Challenge cheat sheet is a resource Conor created for datathon participants. It includes guidance on clustering models, univariate linear regression, model evaluation metrics, data preprocessing, categorical data classification, model selection, and feature selection."
+    },
+    {
+        "question": "What experience does Conor have with neural networks?",
+        "answer": "Conor has built neural networks for regression and classification tasks. During a datathon, he created a neural network that achieved an R² of 0.975 using 36 features. He has also worked on implementing linear regression using neural networks in PyTorch."
+    },
+    {
+        "question": "What are Conor's current projects?",
+        "answer": "Conor is working on VertuVisor, UNC_Eats_AI, and exploratory data analysis for flight and hotel data as part of his coursework. These projects involve machine learning, web scraping, and data visualization."
+    },
+    {
+        "question": "How does Conor approach problem-solving?",
+        "answer": "Conor uses a structured approach that includes exploratory data analysis, feature engineering, and model evaluation. He is adept at using tools like Python, SQL, and machine learning frameworks to find data-driven solutions."
+    },
+    {
+        "question": "What frameworks has Conor worked with for web development?",
+        "answer": "Conor has experience using Flask for web development and integrates backend logic with machine learning models for applications like VertuVisor."
+    },
+    {
+        "question": "What is Conor's role as a TA?",
+        "answer": "Conor is a TA for an Introduction to Python course, where he helps students learn programming fundamentals and assists with code debugging and syntax."
+    },
+    {
+        "question": "What experience does Conor have in teaching and mentoring?",
+        "answer": "Conor has worked as a ULA for a Political Science Data in Politics class, a TA for an Intro to Python course, and has conducted workshops on tools like Git and Pygame."
+    },
+    {
+        "question": "What extracurricular activities does Conor participate in?",
+        "answer": "Conor is part of a neuroscience lab at UNC, contributing to data science tasks. He has also organized a hackathon and participated in competitions like the UCS Career TTI Business Competition."
+    }
+]
