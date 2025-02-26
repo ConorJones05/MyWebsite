@@ -250,7 +250,7 @@ export default function Home() {
           {/* Communications Pillar */}
           <div 
             className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform cursor-pointer"
-            onClick={() => window.open('https://github.com/your-username', '_blank')}
+            onClick={() => window.open('https://github.com/ConorJones05', '_blank')}
           >
         <h2 className="text-2xl font-bold mb-4 text-blue-600">Communications</h2>
         <p className="text-gray-700">
@@ -262,7 +262,7 @@ export default function Home() {
           {/* Statistics Pillar */}
           <div 
         className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform cursor-pointer"
-        onClick={() => window.open('https://linkedin.com/in/your-profile', '_blank')}
+        onClick={() => window.open('https://linkedin.com/in/conor-jones05', '_blank')}
           >
         <h2 className="text-2xl font-bold mb-4 text-green-600">Statistics</h2>
         <p className="text-gray-700">
@@ -274,7 +274,7 @@ export default function Home() {
           {/* Computer Science Pillar */}
           <div 
         className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform cursor-pointer"
-        onClick={() => window.open('https://your-portfolio.com', '_blank')}
+        onClick={() => window.open('https://github.com/ConorJones05', '_blank')}
           >
         <h2 className="text-2xl font-bold mb-4 text-purple-600">Computer Science</h2>
         <p className="text-gray-700">
@@ -316,11 +316,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Project Card 2 */}
+          {/* Googlecal */}
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
             <div className="w-full h-48 relative">
               <Image 
-                src="/images/project2.jpg" 
+                src="/images/googlecal.png" 
                 alt="Project 2"
                 fill
                 className="object-cover"
@@ -334,18 +334,18 @@ export default function Home() {
                 <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Python</span>
                 <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Google API</span>
               </div>
-              <a href="https://github.com/yourusername/project2" target="_blank" rel="noopener noreferrer" 
+              <a href="https://github.com/ConorJones05/CSV_ToGoogleCalendar" target="_blank" rel="noopener noreferrer" 
                 className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
                 View Source
               </a>
             </div>
           </div>
 
-          {/* Project Card 3 */}
+          {/* Website */}
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
             <div className="w-full h-48 relative">
               <Image 
-                src="/images/project3.jpg" 
+                src="/images/website.png" 
                 alt="Project 3"
                 fill
                 className="object-cover"
@@ -354,13 +354,13 @@ export default function Home() {
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold mb-2">Personal Website</h3>
-              <p className="text-gray-300 mb-4">A neural network for predicting student performance based on various factors.</p>
+              <p className="text-gray-300 mb-4">The very website you are on</p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">TensorFlow</span>
-                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Scikit-learn</span>
-                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">NumPy</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">React.js</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Typescript</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Tailwind CSS</span>
               </div>
-              <a href="https://github.com/yourusername/project3" target="_blank" rel="noopener noreferrer" 
+              <a href="https://github.com/ConorJones05/MyWebsite" target="_blank" rel="noopener noreferrer" 
                 className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
                 View Source
               </a>
@@ -388,10 +388,10 @@ export default function Home() {
               key={job.id}
               className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ${
                 expandedJob === job.id
-                  ? "fixed left-4 max-w-[90vw] w-[800px] h-[550px]" // Expanded size with left positioning
+                  ? "fixed left-4 max-w-[90vw] w-[800px] h-[550px]" // expand size with left positioning
                   : expandedJob
-                  ? "w-40 h-40" // shrink other boxes when one is expanded
-                  : "w-60 h-60 hover:scale-105" // Default size
+                  ? "w-40 h-40" 
+                  : "w-60 h-60 hover:scale-105" // Default 
               }`}
               onClick={() => handleJobClick(job.id)}
             >
