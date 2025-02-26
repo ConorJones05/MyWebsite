@@ -1,18 +1,18 @@
-"use client"; // Mark this page as client-side
+"use client";
 
 import { useState, useEffect } from "react";
-import { Link, Element, scroller } from "react-scroll";
-import Head from "next/head";
+import { Link, Element, scroller, scrollSpy } from "react-scroll";
 import CommandPromptCursor from '../../components/CommandPromptCursor';
-import Classes from '../../components/Classes'
-
+import Classes from '../../components/Classes';
+import Image from 'next/image';
 
 export default function Home() {
   const [expandedJob, setExpandedJob] = useState<number | null>(null); // track which job is expanded
   const [currentSection, setCurrentSection] = useState<string>("home"); // track the current section
-  const [keyPressed, setKeyPressed] = useState<string | null>(null); // track the key pressed by the user
+  const [keyPressed] = useState<string | null>(null); // track the key pressed by the user
+  const [, setActiveLink] = useState("home");
   useEffect(() => {
-    setKeyPressed(null); // Ensure consistent initial state
+    scrollSpy.update();
   }, []);
   const [isChatbotOpen, setIsChatbotOpen] = useState<boolean>(false); // track chatbot visibility
   const [chatbotInput, setChatbotInput] = useState<string>(""); // track chatbot input
@@ -122,41 +122,32 @@ export default function Home() {
     setExpandedJob(expandedJob === id ? null : id); // Toggle expanded state
   };
 
-  // keypress event
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.key === 'y' || event.key === 'Y' || event.key === 'n' || event.key === 'N') {
-        setKeyPressed(event.key); // Update the state with pressed key
+      if (event.key.toLowerCase() === 'y') {
+        const sections = ['home', 'about', 'projects', 'academics', 'jobs', 'contact'];
+        const currentIndex = sections.indexOf(currentSection);
+        const nextIndex = (currentIndex + 1) % sections.length;
+        const nextSection = sections[nextIndex];
 
-        if (event.key === 'y' || event.key === 'Y') {
-          const sections = ['home', 'about', 'projects', 'jobs', 'contact'];
-          const currentIndex = sections.indexOf(currentSection);
-          const nextIndex = (currentIndex + 1) % sections.length;
-          const nextSection = sections[nextIndex];
-
-          setCurrentSection(nextSection);
-          scroller.scrollTo(nextSection, {
-            duration: 500,
-            smooth: true,
-            offset: -50,
-          });
-        }
+        setCurrentSection(nextSection);
+        scroller.scrollTo(nextSection, {
+          containerId: 'scroll-container',
+          duration: 500,
+          smooth: true,
+          offset: -80, 
+        });
       }
     };
 
-    window.addEventListener('keypress', handleKeyPress);
-    return () => {
-      window.removeEventListener('keypress', handleKeyPress);
-    };
-  }, [currentSection]); // Re-run effect when currentSection diff
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentSection]);
 
   // chatbot input submission
   const handleChatbotSubmit = async () => {
     if (!chatbotInput.trim()) return;
-
-    // Show loading animation
-    setChatbotResponse("Thinking...");
-
+  
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -174,10 +165,7 @@ export default function Home() {
 
       const data = await response.json();
       if (data.choices && data.choices[0] && data.choices[0].message) {
-        // Animate the response appearing
-        setTimeout(() => {
-          setChatbotResponse(data.choices[0].message.content);
-        }, 300);
+        setChatbotResponse(data.choices[0].message.content);
       } else {
         setChatbotResponse("Unexpected response format.");
       }
@@ -187,83 +175,30 @@ export default function Home() {
       setChatbotResponse("An error occurred. Please try again.");
     }
   };
-
-  {isChatbotOpen && (
-    <div className="fixed top-16 right-4 w-80 bg-white shadow-lg rounded-lg p-4 z-50
-      transform transition-all duration-300 ease-in-out
-      animate-[slideIn_0.3s_ease-out]
-      hover:shadow-xl">
-    </div>
-  )}
-
   return (
-    <div className="h-screen w-full overflow-y-auto scroll-smooth">
-
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 w-full bg-custom-black shadow-md p-4 flex space-x-6 z-50 justify-start">
-        <Link
-          to="home"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          Home
-        </Link>
-        <Link
-          to="about"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          About
-        </Link>
-        <Link
-          to="projects"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          Projects
-        </Link>
-        <Link
-          to="academics"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          Academics
-        </Link>
-        <Link
-          to="jobs"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          Jobs
-        </Link>
-        <Link
-          to="contact"
-          smooth={true}
-          duration={500}
-          spy={true}
-          offset={-50}
-          className="cursor-pointer text-white hover:underline"
-        >
-          Contact
-        </Link>
+    <div 
+      id="scroll-container" 
+      className="h-screen w-full overflow-y-auto scroll-smooth"
+    >
+      <nav className="fixed top-0 w-full bg-custom-black shadow-md p-4 flex space-x-6 z-50">
+        {['home', 'about', 'projects', 'academics', 'jobs', 'contact'].map((link) => (
+          <Link
+        key={link}
+        to={link}
+        containerId="scroll-container"
+        smooth={true}
+        duration={500}
+        spy={true}
+        offset={-80}
+        onSetActive={(to: string) => setActiveLink(to)}
+        className="cursor-pointer text-white hover:underline"
+          >
+        {link.charAt(0).toUpperCase() + link.slice(1)}
+          </Link>
+        ))}
       </nav>
+      
 
-      {/* CHATBOT BUTTON */}
       <button
         onClick={() => setIsChatbotOpen(!isChatbotOpen)}
         className="fixed top-4 right-4 bg-custom-green text-black p-2 rounded-xl z-50 hover:bg-green-600 transition duration-300"
@@ -355,58 +290,81 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-12">My Projects</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-4">
           
-          {/* Project Card 1 */}
+          {/* CDC */}
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/images/project1.jpg" alt="Project 1" className="w-full h-48 object-cover"/>
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">Personal Website</h3>
-          <p className="text-gray-300 mb-4">A responsive personal website built with Next.js, TypeScript, and Tailwind CSS.</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Next.js</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">TypeScript</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Tailwind</span>
-          </div>
-          <a href="https://github.com/yourusername/project1" target="_blank" rel="noopener noreferrer" 
-             className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
-            View Source
-          </a>
-        </div>
+            <div className="w-full h-48 relative">
+              <Image 
+                src="/images/cdc.png" 
+                alt="CDC"
+                fill
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">Carolina Data Challenge</h3>
+              <p className="text-gray-300 mb-4">My teams submission to the Carolina Data Challenge 2025 resulting in a neural network predicting airfare costs with an R² of 0.97</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">PyTorch</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Python</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Pandas</span>
+              </div>
+              <a href="https://github.com/ConorJones05/CDC_2024/tree/master" target="_blank" rel="noopener noreferrer" 
+                className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+                View Source
+              </a>
+            </div>
           </div>
 
           {/* Project Card 2 */}
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/images/project2.jpg" alt="Project 2" className="w-full h-48 object-cover"/>
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">Data Analysis Tool</h3>
-          <p className="text-gray-300 mb-4">A Python-based tool for analyzing and visualizing large datasets.</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Python</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Pandas</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Matplotlib</span>
-          </div>
-          <a href="https://github.com/yourusername/project2" target="_blank" rel="noopener noreferrer" 
-             className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
-            View Source
-          </a>
-        </div>
+            <div className="w-full h-48 relative">
+              <Image 
+                src="/images/project2.jpg" 
+                alt="Project 2"
+                fill
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">CSV to GoogleCal</h3>
+              <p className="text-gray-300 mb-4">A Python-based tool for mass uploading Google Tasks form a csv file.</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Python</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Google API</span>
+              </div>
+              <a href="https://github.com/yourusername/project2" target="_blank" rel="noopener noreferrer" 
+                className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+                View Source
+              </a>
+            </div>
           </div>
 
           {/* Project Card 3 */}
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/images/project3.jpg" alt="Project 3" className="w-full h-48 object-cover"/>
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">Machine Learning Model</h3>
-          <p className="text-gray-300 mb-4">A neural network for predicting student performance based on various factors.</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">TensorFlow</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Scikit-learn</span>
-            <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">NumPy</span>
-          </div>
-          <a href="https://github.com/yourusername/project3" target="_blank" rel="noopener noreferrer" 
-             className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
-            View Source
-          </a>
-        </div>
+            <div className="w-full h-48 relative">
+              <Image 
+                src="/images/project3.jpg" 
+                alt="Project 3"
+                fill
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">Personal Website</h3>
+              <p className="text-gray-300 mb-4">A neural network for predicting student performance based on various factors.</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">TensorFlow</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">Scikit-learn</span>
+                <span className="px-2 py-1 bg-blue-600 rounded-full text-sm">NumPy</span>
+              </div>
+              <a href="https://github.com/yourusername/project3" target="_blank" rel="noopener noreferrer" 
+                className="inline-block bg-custom-green text-black px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+                View Source
+              </a>
+            </div>
           </div>
 
         </div>
@@ -437,7 +395,7 @@ export default function Home() {
               }`}
               onClick={() => handleJobClick(job.id)}
             >
-              {/* Background image */}
+              {/* Background  */}
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -501,7 +459,7 @@ export default function Home() {
       {/* Contanct */}
 
       <Element name="contact" className="h-screen flex flex-col items-center justify-center bg-custom-black">
-        <h1 className="text-4xl font-bold mb-8">Let's Connect!</h1>
+        <h1 className="text-4xl font-bold mb-8">Lets Connect!</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-4">
           {/* Contact Info */}
           <div className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col items-center">
@@ -509,8 +467,8 @@ export default function Home() {
             <div className="space-y-6 text-center">
               <div>
                 <p className="text-custom-green font-semibold mb-2">Email</p>
-                <a href="mailto:conor.jones@unc.edu" className="hover:text-custom-green transition-colors">
-                  conor.jones@unc.edu
+                <a href="mailto:conjon@unc.edu" className="hover:text-custom-green transition-colors">
+                  conjon@unc.edu
                 </a>
               </div>
               <div>
@@ -529,7 +487,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-6 text-center">Connect With Me</h2>
         <div className="grid grid-cols-2 gap-4">
           <a 
-            href="https://github.com/conorjones13" 
+            href="https://github.com/ConorJones05" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
@@ -540,7 +498,7 @@ export default function Home() {
             </svg>
           </a>
           <a 
-            href="https://linkedin.com/in/conor-jones-861a7a251" 
+            href="www.linkedin.com/in/conor-jones05" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
@@ -554,7 +512,7 @@ export default function Home() {
         <div className="mt-8 text-center">
           <p className="text-gray-400 mb-4">Prefer to chat directly?</p>
           <a 
-            href="https://calendly.com/your-username" 
+            href="https://calendar.app.google/Ac6aUYdE5HAwV2qBA" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-custom-green text-black px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 inline-block"
@@ -565,6 +523,6 @@ export default function Home() {
           </div>
         </div>
       </Element>
-    </div>
-  );
+  </div>
+);
 }
