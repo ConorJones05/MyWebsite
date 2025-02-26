@@ -1,71 +1,37 @@
-[
-    {
-      "question": "What are Conor's technical skills?",
-      "answer": "Proficient in Python, SQL, PostgreSQL, PyTorch, Scikit-learn, AWS, Flask, TensorFlow, web scraping, and data visualization."
-    },
-    {
-      "question": "What is Conor's educational background?",
-      "answer": "Sophomore at UNC Chapel Hill, studying Statistics and Computer Science with a focus on Data Science."
-    },
-    {
-      "question": "What is VertuVisor?",
-      "answer": "An AI-powered academic planning tool. Conor developed the machine learning models, backend, and AWS deployment."
-    },
-    {
-      "question": "What are Conor's datathon achievements?",
-      "answer": "Built a neural network with an R² of 0.975 in the Carolina Data Challenge 2024; created a cheat sheet on ML techniques."
-    },
-    {
-      "question": "What machine learning frameworks does Conor use?",
-      "answer": "Experienced with PyTorch, TensorFlow, and Scikit-learn for regression, classification, and academic planning algorithms."
-    },
-    {
-      "question": "What programming languages does Conor know?",
-      "answer": "Proficient in Python, SQL, and web development with Flask."
-    },
-    {
-      "question": "What is UNC_Eats_AI?",
-      "answer": "A web scraping project providing dining insights; Conor handled scraping and data analysis."
-    },
-    {
-      "question": "What are Conor's future goals?",
-      "answer": "Pursuing a PhD in Statistics, focusing on Data Science and machine learning research."
-    },
-    {
-      "question": "What courses has Conor taken?",
-      "answer": "STOR 320, Calc II, Discrete Math, COMP 210, and advanced topics in data analysis and neural networks."
-    },
-    {
-      "question": "Where can I find Conor's work?",
-      "answer": "GitHub: https://github.com/ConorJones05 | LinkedIn: https://www.linkedin.com/in/conor-jones05 | Website: https://conorjones05.github.io/"
-    },
-    {
-      "question": "What is Conor's Carolina Data Challenge cheat sheet?",
-      "answer": "A datathon resource covering clustering, regression, model evaluation, preprocessing, and feature selection."
-    },
-    {
-      "question": "What experience does Conor have with neural networks?",
-      "answer": "Built networks for regression/classification, including a datathon model with an R² of 0.975."
-    },
-    {
-      "question": "What are Conor's current projects?",
-      "answer": "Working on VertuVisor, UNC_Eats_AI, and flight/hotel data analysis using ML, web scraping, and visualization."
-    },
-    {
-      "question": "How does Conor approach problem-solving?",
-      "answer": "Uses exploratory data analysis, feature engineering, and ML frameworks to develop data-driven solutions."
-    },
-    {
-      "question": "What web development frameworks does Conor use?",
-      "answer": "Flask for backend development, integrating ML models into applications like VertuVisor."
-    },
-    {
-      "question": "What is Conor's teaching experience?",
-      "answer": "TA for Intro to Python, ULA for Political Science Data in Politics, and workshop leader on Git and Pygame."
-    },
-    {
-      "question": "What extracurricular activities does Conor participate in?",
-      "answer": "Works in a neuroscience lab on data science tasks, organized a hackathon, and competed in business competitions."
-    }
-  ]
+{
+    "questions_and_answers": [
+      {
+        "question": "What degrees is Conor pursuing at UNC Chapel Hill?",
+        "answer": "Conor is pursuing a Bachelor of Science in Statistics and Analytics and a Bachelor of Arts in Computer Science, with a minor in Information Systems."
+      },
+      {
+        "question": "What is Conor's current GPA?",
+        "answer": "Conor's GPA is 3.42/4.0."
+      },
+      {
+        "question": "What technical skills does Conor have?",
+        "answer": "Conor is proficient in Python, R, Java, and SQL, along with data science tools like Pandas, NumPy, SciPy, Scikit-learn, TensorFlow, and Keras. He also has experience with MySQL, PostgreSQL, data visualization with Matplotlib and ggplot2, web scraping using BeautifulSoup and Selenium, and tools like Jupyter, RStudio, Excel, Git, and Docker."
+      },
+      {
+        "question": "What role does Conor hold at Carolina Housing?",
+        "answer": "Conor is a Resident Advisor responsible for 25 residents, fostering a supportive environment, planning community events, and providing one-on-one support."
+      },
+      {
+        "question": "What research is Conor involved in at the Carolina Institute of Neurostimulation?",
+        "answer": "Conor conducts analysis on correlations between the Default Mode Network (DMN) and Dorsal Attention Network (DAN), develops software for tracking pupil sizes, and built a tACTS machine for brainwave stimulation experiments."
+      },
+      {
+        "question": "What responsibilities does Conor have as an Undergraduate Teaching Assistant?",
+        "answer": "Conor administers tests, supports in-class assignments, holds office hours, and contributes to maintaining a team website."
+      },
+      {
+        "question": "What did Conor accomplish at the Boys and Girls Club of Cabarrus County?",
+        "answer": "Conor created and led the BGC Robotics Program, enrolling over 20 youths, and facilitated life skills-building activities."
+      },
+      {
+        "question": "What business case competitions has Conor participated in?",
+        "answer": "Conor participated in the Spring 2024 University Career Services Northwestern Mutual Business Case Competition and won 1st place in the Fall 2023 University Career Services TTI Business Case Competition."
+      }
+    ]
+  }
   
